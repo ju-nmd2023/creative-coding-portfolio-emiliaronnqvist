@@ -20,10 +20,10 @@ function draw() {
   push();
   stroke(129, 91, 67);
   strokeWeight(4);
-  line(265, 130, 265, 455);
+  line(width / 2, height / 2 - 150, width / 2, height / 2 + 150);
   pop();
   push();
-  translate(300, -140);
+  translate(width / 2 + 35, height / 2 - 419);
   rotate(0.78);
 
   for (r = 0; r < radius; r += radius / numRings) {

@@ -6,8 +6,8 @@ function setup() {
 
 const size = 10;
 const divider = 1;
-const numRows = 100;
-const numCols = 100;
+const numRows = 150;
+const numCols = 150;
 
 function draw() {
   background(0);

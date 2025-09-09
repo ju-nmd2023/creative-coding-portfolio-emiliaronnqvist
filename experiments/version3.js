@@ -13,9 +13,8 @@ let scale = 40;
 let resolution = 0.0045;
 let numPoints = 1000;
 
-let radius = 130;
-let numRings = 25;
-
+let radius = 150;
+let numRings = 27;
 function draw() {
   beginShape();
   for (r = 0; r < radius; r += radius / numRings) {
