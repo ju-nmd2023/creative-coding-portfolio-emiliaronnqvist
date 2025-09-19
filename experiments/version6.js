@@ -236,152 +236,146 @@ const perlin_noise = (sketch) => {
     updateColorScheme(current_color_scheme);
   }
 
+  document
+    .getElementById("flow-field-control-redo")
+    .addEventListener("click", reset);
+  document
+    .getElementById("flow-field-control-color-scheme")
+    .addEventListener("change", function (event) {
+      updateColorScheme(event.target.value);
+    });
 
-    document
-      .getElementById("flow-field-control-redo")
-      .addEventListener("click", reset);
-    document
-      .getElementById("flow-field-control-color-scheme")
-      .addEventListener("change", function (event) {
-        updateColorScheme(event.target.value);
-      });
+  document
+    .getElementById("flow-field-control-particle-count")
+    .addEventListener("input", function (event) {
+      document.getElementById("slider-particle-counter").innerHTML =
+        event.target.value;
+    });
+  document
+    .getElementById("flow-field-control-particle-count")
+    .addEventListener("change", function (event) {
+      updateParticleCount(event.target.value);
+    });
 
-    document
-      .getElementById("flow-field-control-particle-count")
-      .addEventListener("input", function (event) {
-        document.getElementById("slider-particle-counter").innerHTML =
-          event.target.value;
-      });
-    document
-      .getElementById("flow-field-control-particle-count")
-      .addEventListener("change", function (event) {
-        updateParticleCount(event.target.value);
-      });
+  document
+    .getElementById("flow-field-control-angle-multiplier")
+    .addEventListener("input", function (event) {
+      document.getElementById("slider-angle-multiplier").innerHTML =
+        event.target.value;
+    });
+  document
+    .getElementById("flow-field-control-angle-multiplier")
+    .addEventListener("change", function (event) {
+      angle_multiplier = parseInt(event.target.value);
+    });
 
-    document
-      .getElementById("flow-field-control-angle-multiplier")
-      .addEventListener("input", function (event) {
-        document.getElementById("slider-angle-multiplier").innerHTML =
-          event.target.value;
-      });
-    document
-      .getElementById("flow-field-control-angle-multiplier")
-      .addEventListener("change", function (event) {
-        angle_multiplier = parseInt(event.target.value);
-      });
+  document
+    .getElementById("flow-field-control-magnitude-multiplier")
+    .addEventListener("input", function (event) {
+      document.getElementById("slider-magnitude-multiplier").innerHTML =
+        event.target.value;
+    });
+  document
+    .getElementById("flow-field-control-magnitude-multiplier")
+    .addEventListener("change", function (event) {
+      magnitude_multiplier = parseInt(event.target.value);
+    });
 
-    document
-      .getElementById("flow-field-control-magnitude-multiplier")
-      .addEventListener("input", function (event) {
-        document.getElementById("slider-magnitude-multiplier").innerHTML =
-          event.target.value;
-      });
-    document
-      .getElementById("flow-field-control-magnitude-multiplier")
-      .addEventListener("change", function (event) {
-        magnitude_multiplier = parseInt(event.target.value);
-      });
+  document
+    .getElementById("flow-field-control-debug-mode")
+    .addEventListener("change", function (event) {
+      debug_mode = event.target.checked;
 
-    document
-      .getElementById("flow-field-control-debug-mode")
-      .addEventListener("change", function (event) {
-        debug_mode = event.target.checked;
+      if (debug_mode) {
+        sketch.blendMode(sketch.BLEND);
+      } else {
+        updateColorScheme(current_color_scheme);
+      }
+    });
 
-        if (debug_mode) {
-          sketch.blendMode(sketch.BLEND);
-        } else {
-          updateColorScheme(current_color_scheme);
-        }
-      });
+  document
+    .getElementById("flow-field-control-save")
+    .addEventListener("click", function () {
+      sketch.save(
+        canvas_el,
+        `perlin_noise_flow_field_${current_color_scheme}_${debug_mode}_${number_of_particles}_${angle_multiplier}_${magnitude_multiplier}_${Math.floor(
+          Date.now() / 1000
+        )}`,
+        "png"
+      );
+    });
+};
 
-    document
-      .getElementById("flow-field-control-save")
-      .addEventListener("click", function () {
-        sketch.save(
-          canvas_el,
-          `perlin_noise_flow_field_${current_color_scheme}_${debug_mode}_${number_of_particles}_${angle_multiplier}_${magnitude_multiplier}_${Math.floor(
-            Date.now() / 1000
-          )}`,
-          "png"
-        );
-      });
-  }
+sketch.windowResized = () => {
+  sketch.resizeCanvas(container.clientWidth, container.clientHeight);
+  sketch.draw();
+};
 
-  sketch.windowResized = () => {
-    sketch.resizeCanvas(container.clientWidth, container.clientHeight);
-    sketch.draw();
-  };
+sketch.draw = () => {
+  if (debug_mode)
+    sketch.background(color_sets[current_color_scheme].background);
 
-  sketch.draw = () => {
-    if (debug_mode)
-      sketch.background(color_sets[current_color_scheme].background);
+  var z_offset = start;
+  var density = sketch.pixelDensity();
 
-    var z_offset = start;
-    var density = sketch.pixelDensity();
+  var x = 0;
+  var y = 0;
+  var index = 0;
+  var color = 0;
+  var angle = 0;
 
-    var x = 0;
-    var y = 0;
-    var index = 0;
-    var color = 0;
-    var angle = 0;
+  // This maps noise values onto a 2D space
+  for (x = 0; x < sketch.width * density; x += gridSizeInPixels * density) {
+    for (y = 0; y < sketch.height * density; y += gridSizeInPixels * density) {
+      index = (x + y * sketch.width * density) * 4;
+      noise_value = sketch.noise(
+        (x / density) * increment, // Use the X as index but transform to smaller steps in the noise space
+        (y / density) * increment, // Use the Y as index but transform to smaller steps in the noise space
+        z_offset
+      );
 
-    // This maps noise values onto a 2D space
-    for (x = 0; x < sketch.width * density; x += gridSizeInPixels * density) {
-      for (
-        y = 0;
-        y < sketch.height * density;
-        y += gridSizeInPixels * density
-      ) {
-        index = (x + y * sketch.width * density) * 4;
-        noise_value = sketch.noise(
-          (x / density) * increment, // Use the X as index but transform to smaller steps in the noise space
-          (y / density) * increment, // Use the Y as index but transform to smaller steps in the noise space
-          z_offset
-        );
+      angle = sketch.map(
+        noise_value,
+        0, // Noise lower bound value
+        1, // Noise upper bound value
+        0,
+        sketch.TWO_PI * angle_multiplier
+      );
+      magnitude = sketch.map(
+        noise_value,
+        0, // Noise lower bound value
+        1, // Noise upper bound value
+        0.5,
+        1 * magnitude_multiplier
+      );
 
-        angle = sketch.map(
-          noise_value,
-          0, // Noise lower bound value
-          1, // Noise upper bound value
-          0,
-          sketch.TWO_PI * angle_multiplier
-        );
-        magnitude = sketch.map(
-          noise_value,
-          0, // Noise lower bound value
-          1, // Noise upper bound value
-          0.5,
-          1 * magnitude_multiplier
-        );
+      vector_index =
+        x / density / gridSizeInPixels +
+        (y / density / gridSizeInPixels) *
+          sketch.floor(sketch.width / gridSizeInPixels);
+      flow_field[vector_index] = p5.Vector.fromAngle(angle);
+      flow_field[vector_index].setMag(magnitude);
 
-        vector_index =
-          x / density / gridSizeInPixels +
-          (y / density / gridSizeInPixels) *
-            sketch.floor(sketch.width / gridSizeInPixels);
-        flow_field[vector_index] = p5.Vector.fromAngle(angle);
-        flow_field[vector_index].setMag(magnitude);
-
-        if (debug_mode) {
-          sketch.push();
-          sketch.stroke(color_sets[current_color_scheme].lines[0]);
-          sketch.translate(x, y);
-          sketch.rotate(flow_field[vector_index].heading());
-          sketch.line(0, 0, gridSizeInPixels * density, 0);
-          // sketch.fill(color)
-          // sketch.rect(x, y, gridSizeInPixels * density, gridSizeInPixels * density)
-          sketch.pop();
-        }
+      if (debug_mode) {
+        sketch.push();
+        sketch.stroke(color_sets[current_color_scheme].lines[0]);
+        sketch.translate(x, y);
+        sketch.rotate(flow_field[vector_index].heading());
+        sketch.line(0, 0, gridSizeInPixels * density, 0);
+        // sketch.fill(color)
+        // sketch.rect(x, y, gridSizeInPixels * density, gridSizeInPixels * density)
+        sketch.pop();
       }
     }
+  }
 
-    start += increment;
+  start += increment;
 
-    for (var i = 0; i < number_of_particles; i++) {
-      particles[i].follow(flow_field);
-      particles[i].update();
-      particles[i].show(debug_mode);
-    }
-  };
+  for (var i = 0; i < number_of_particles; i++) {
+    particles[i].follow(flow_field);
+    particles[i].update();
+    particles[i].show(debug_mode);
+  }
 };
 
 // Wait for everything to load

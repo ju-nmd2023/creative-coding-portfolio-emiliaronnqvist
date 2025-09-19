@@ -97,7 +97,7 @@ let field;
 let agents = [];
 
 function draw() {
-  background(34, 39, 46, 30);
+  background(32, 42, 68, 25);
   for (let agent of agents) {
     const x = Math.floor(agent.position.x / fieldSize);
 
