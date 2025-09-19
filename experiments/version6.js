@@ -28,6 +28,10 @@ class Agent {
     this.velocity.limit(this.maxSpeed);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
+
+    if (random() < 0.3) {
+      this.velocity.rotate(0.2 - 0.3);
+    }
   }
 
   checkBorders() {
@@ -50,7 +54,7 @@ class Agent {
   draw() {
     push();
     stroke(this.color);
-    strokeWeight(1);
+    strokeWeight(1.4);
     line(
       this.lastPosition.x,
       this.lastPosition.y,
@@ -79,12 +83,12 @@ function generateField() {
   return field;
 }
 function generateAgents() {
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 2 + random(2, 4); i++) {
     let agent = new Agent(
       Math.random() * innerWidth,
       Math.random() * innerHeight,
-      3 + random(2),
-      2
+      2 + random(10, 15),
+      50
     );
     agents.push(agent);
   }
@@ -100,7 +104,6 @@ function draw() {
   background(32, 42, 68, 25);
   for (let agent of agents) {
     const x = Math.floor(agent.position.x / fieldSize);
-
     const y = Math.floor(agent.position.y / fieldSize);
     const desiredDirection = field[x][y];
     agent.follow(desiredDirection);
