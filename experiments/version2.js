@@ -1,3 +1,4 @@
+//Following code is inspired på N
 function setup() {
   createCanvas(innerWidth, innerHeight);
   noLoop();
@@ -10,7 +11,7 @@ const numRows = 4000;
 const numCols = 4000;
 
 function draw() {
-  background(0);
+  background(32, 42, 68);
 
   //mitten av canvas
   const circleX = width / 2;

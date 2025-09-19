@@ -1,22 +1,27 @@
 [
   {
     "file": "experiments/version1.js",
-    "name": "Disco",
+    "name": "Perlin Noise | Version 1 | Discolight",
     "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
   },
   {
     "file": "experiments/version2.js",
-    "name": "Moon",
+    "name": "Perlin Noise | Version 2 | Moonlight",
     "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
   },
   {
     "file": "experiments/version3.js",
-    "name": "Moon",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+    "name": "Old tree",
+    "description": "I was inspired by the ´Radial Perlin Noise and Generative Tree Rings´ tutorial and played with the number of points, rings to create a more rustic feeling."
   },
   {
     "file": "experiments/version4.js",
-    "name": "Moon",
+    "name": "Waving flag",
+    "description": "I was inspired by the ´Radial Perlin Noise and Generative Tree Rings´ and"
+  },
+  {
+    "file": "experiments/version5.js",
+    "name": "Circle of rings",
     "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
   }
 ]

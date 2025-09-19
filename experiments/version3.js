@@ -4,7 +4,7 @@ function setup() {
   createCanvas(innerWidth, innerHeight);
   background(207, 185, 151);
   stroke(129, 91, 67);
-  strokeWeight(1);
+  strokeWeight(1.2);
   noFill();
   noiseSeed(69);
 }
@@ -13,8 +13,8 @@ let scale = 40;
 let resolution = 0.0045;
 let numPoints = 1000;
 
-let radius = 150;
-let numRings = 27;
+let radius = 230;
+let numRings = 39;
 function draw() {
   beginShape();
   for (r = 0; r < radius; r += radius / numRings) {

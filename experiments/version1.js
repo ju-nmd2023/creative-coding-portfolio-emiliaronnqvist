@@ -6,11 +6,11 @@ function setup() {
 
 const size = 10;
 const divider = 1;
-const numRows = 150;
-const numCols = 150;
+const numRows = 200;
+const numCols = 200;
 
 function draw() {
-  background(0);
+  background(32, 42, 68);
 
   //mitten av canvas
   const circleX = width / 2;

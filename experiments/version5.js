@@ -2,35 +2,27 @@
 
 function setup() {
   createCanvas(innerWidth, innerHeight);
-  background(32, 32, 32);
-  stroke(105, 105, 105);
-  strokeWeight(1);
+  background(129, 91, 67);
+  stroke(207, 185, 151);
+  strokeWeight(0.8);
   noFill();
   noiseSeed(24);
 }
 
 let scale = 50;
-let resolution = 0.007;
+let resolution = 0.009;
 let numPoints = 100;
 
-let radius = 200;
-let numRings = 80;
+let radius = 250;
+let numRings = 130;
 
 function draw() {
-  push();
-  stroke(105, 105, 105);
-  strokeWeight(4);
-  line(width / 2 - 40, height / 2 - 150, width / 2 - 40, height / 2 + 220);
-  pop();
-  push();
-  translate(width / 2 - 4, height / 2 - 419);
-  rotate(0.78);
-
+  translate(innerWidth / 2, innerHeight / 2 - 30);
   for (r = 0; r < radius; r += radius / numRings) {
     beginShape();
     for (a = 0; a < TWO_PI; a += TWO_PI / numPoints) {
-      var x = 150 + r - cos(a);
-      var y = 200 + r * sin(a);
+      var x = r * cos(a);
+      var y = r * sin(a);
 
       var n = map(noise(x * resolution, y * resolution), 0, 1, -scale, scale);
 
@@ -38,6 +30,5 @@ function draw() {
     }
     endShape(CLOSE);
   }
-  pop();
   noLoop();
 }
