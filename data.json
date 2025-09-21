@@ -28,5 +28,10 @@
     "file": "experiments/version6.js",
     "name": "Flow Fields | Version 1 | Lightning Strikes",
     "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+  },
+  {
+    "file": "experiments/version7.js",
+    "name": "Flow Fields | Version 2 | Fire's catching",
+    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
   }
 ]

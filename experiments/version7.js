@@ -1,12 +1,13 @@
 //The following code is adapted from https://codepen.io/pixelkind/pen/OJrRzOm
 class Agent {
-  constructor(x, y, maxSpeed, maxForce) {
+  constructor(x, y, maxSpeed, maxForce, color) {
     this.position = createVector(x, y);
     this.lastPosition = createVector(x, y);
     this.acceleration = createVector(0, 0);
     this.velocity = createVector(0, 0);
     this.maxSpeed = maxSpeed;
     this.maxForce = maxForce;
+    this.color = color;
   }
   follow(desiredDirection) {
     desiredDirection = desiredDirection.copy();
@@ -47,8 +48,8 @@ class Agent {
 
   draw() {
     push();
-    stroke(0, 0, 0, 40);
-    strokeWeight(1);
+    stroke(this.color);
+    strokeWeight(0.4);
     line(
       this.lastPosition.x,
       this.lastPosition.y,
@@ -61,34 +62,36 @@ class Agent {
 
 function setup() {
   createCanvas(innerWidth, innerHeight);
-  background(255, 255, 255);
+  background(110, 5, 0);
   field = generateField();
   generateAgents();
 }
 function generateField() {
   let field = [];
-  noiseSeed(Math.random() * 100);
+  noiseSeed(Math.random() * 50);
   for (let x = 0; x < maxCols; x++) {
     field.push([]);
     for (let y = 0; y < maxRows; y++) {
-      const value = noise(x / divider, y / divider) * Math.PI * 2;
-      field[x].push(p5.Vector.fromAngle(value));
+      const rotation = noise(x / divider, y / divider) * PI - PI / 2;
+      field[x].push(p5.Vector.fromAngle(-HALF_PI + rotation));
     }
   }
   return field;
 }
 function generateAgents() {
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 900; i++) {
+    let colour = color(255, 100, 0, 20);
     let agent = new Agent(
       Math.random() * innerWidth,
       Math.random() * innerHeight,
-      4,
-      0.1
+      17,
+      3,
+      colour
     );
     agents.push(agent);
   }
 }
-const fieldSize = 50;
+const fieldSize = 10;
 const maxCols = Math.ceil(innerWidth / fieldSize);
 const maxRows = Math.ceil(innerHeight / fieldSize);
 const divider = 4;

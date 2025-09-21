@@ -83,7 +83,7 @@ function generateField() {
   return field;
 }
 function generateAgents() {
-  for (let i = 0; i < 2 + random(2, 4); i++) {
+  for (let i = 0; i < 1 + random(2, 4); i++) {
     let agent = new Agent(
       Math.random() * innerWidth,
       Math.random() * innerHeight,
