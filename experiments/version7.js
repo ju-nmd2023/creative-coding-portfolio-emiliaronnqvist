@@ -81,23 +81,23 @@ function generateField() {
 }
 
 function generateAgents() {
-  for (let i = 0; i < 500; i++) {
-    let colour = color(255, 100, 0, 100);
+  for (let i = 0; i < 900; i++) {
+    let colour = color(255, 100, 0, 50);
     let agent = new Agent(
       Math.random() * innerWidth,
       Math.random() * innerHeight,
-      5.5,
-      2.3,
+      10,
+      3,
       colour
     );
     agents.push(agent);
   }
 }
 
-const fieldSize = 0;
+const fieldSize = 15;
 const maxCols = Math.ceil(innerWidth / fieldSize);
 const maxRows = Math.ceil(innerHeight / fieldSize);
-const divider = 2;
+const divider = 5;
 let field;
 let agents = [];
 
