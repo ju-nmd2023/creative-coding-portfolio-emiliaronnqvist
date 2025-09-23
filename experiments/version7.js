@@ -66,6 +66,7 @@ function setup() {
   field = generateField();
   generateAgents();
 }
+
 function generateField() {
   let field = [];
   noiseSeed(Math.random() * 50);
@@ -78,23 +79,25 @@ function generateField() {
   }
   return field;
 }
+
 function generateAgents() {
-  for (let i = 0; i < 900; i++) {
-    let colour = color(255, 100, 0, 20);
+  for (let i = 0; i < 500; i++) {
+    let colour = color(255, 100, 0, 100);
     let agent = new Agent(
       Math.random() * innerWidth,
       Math.random() * innerHeight,
-      17,
-      3,
+      5.5,
+      2.3,
       colour
     );
     agents.push(agent);
   }
 }
-const fieldSize = 10;
+
+const fieldSize = 0;
 const maxCols = Math.ceil(innerWidth / fieldSize);
 const maxRows = Math.ceil(innerHeight / fieldSize);
-const divider = 4;
+const divider = 2;
 let field;
 let agents = [];
 
