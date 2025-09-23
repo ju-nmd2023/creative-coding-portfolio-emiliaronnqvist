@@ -30,7 +30,7 @@ class Agent {
     this.acceleration.mult(0);
 
     if (random() < 0.3) {
-      this.velocity.rotate(0.2 - 0.3);
+      this.velocity.rotate(0.1 - 0.2);
     }
   }
 
@@ -83,17 +83,17 @@ function generateField() {
   return field;
 }
 function generateAgents() {
-  for (let i = 0; i < 1 + random(2, 4); i++) {
+  for (let i = 0; i < 1 + random(2, 3); i++) {
     let agent = new Agent(
       Math.random() * innerWidth,
       Math.random() * innerHeight,
       2 + random(10, 15),
-      50
+      29
     );
     agents.push(agent);
   }
 }
-const fieldSize = 3;
+const fieldSize = 5;
 const maxCols = Math.ceil(innerWidth / fieldSize);
 const maxRows = Math.ceil(innerHeight / fieldSize);
 const divider = 10;
