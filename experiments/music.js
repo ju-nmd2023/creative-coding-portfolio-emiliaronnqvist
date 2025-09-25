@@ -1,4 +1,3 @@
-const selectedElement = document.getElementById("selected");
 const sineButton = document.getElementById("sine");
 const startButton = document.getElementById("start");
 const stopButton = document.getElementById("stop");
@@ -22,8 +21,16 @@ let chorus;
 let synth;
 
 window.addEventListener("load", () => {
+  // Create Chorus effect and start
   chorus = new Tone.Chorus(4, 2.5, 0.5).toDestination().start();
+  //Create polySynth
   synth = new Tone.PolySynth().connect(chorus);
+  // Set oscilliator to Sine
+  synth.set({
+    oscillator: {
+      type: "sine",
+    },
+  });
 });
 
 sineButton.addEventListener("click", () => {
@@ -32,7 +39,6 @@ sineButton.addEventListener("click", () => {
       type: "sine",
     },
   });
-  selectedElement.innerText = "Selected: Sine";
 });
 
 attackInput.addEventListener("change", () => {
@@ -112,5 +118,5 @@ buttonC2.addEventListener("click", () => {
 });
 
 window.addEventListener("click", () => {
-  Tone.start();
+  Tone.start().then(() => console.log("audio started"));
 });
