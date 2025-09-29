@@ -1,4 +1,4 @@
-//This code is adapted from https://codepen.io/pixelkind/pen/VwqKyoP
+//This code is inspired by https://codepen.io/pixelkind/pen/VwqKyoP
 class Particle {
   constructor(x, y, particleColor) {
     this.position = createVector(x, y);
@@ -71,7 +71,6 @@ function mouseClicked() {
   generateParticles(mouseX, mouseY);
 }
 
-//This code is inspired by https://codepen.io/pixelkind/pen/RwEVVaw
 let synth;
 
 //Following one line was adapted from https://chatgpt.com/share/68d51069-73bc-8005-ac1d-0861224e6c6c
