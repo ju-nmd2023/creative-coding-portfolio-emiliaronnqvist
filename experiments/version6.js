@@ -30,7 +30,7 @@ class Agent {
     this.acceleration.mult(0);
 
     if (random() < 0.3) {
-      this.velocity.rotate(-0.5, 0.5);
+      this.velocity.rotate(random(-0.5, 0.5));
     }
   }
 
