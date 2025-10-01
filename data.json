@@ -2,41 +2,41 @@
   {
     "file": "experiments/version1.js",
     "name": "Perlin Noise | Version 1 | Discolight",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+    "description": "I wanted to make Perlin Noise in a circle with different sizes and colors of the dots. Making it a disco ball lamp."
   },
   {
     "file": "experiments/version2.js",
     "name": "Perlin Noise | Version 2 | Moonlight",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+    "description": "The goal was to make the Perlin Noise look like a moon."
   },
   {
     "file": "experiments/version3.js",
-    "name": "Old tree",
-    "description": "I was inspired by the ´Radial Perlin Noise and Generative Tree Rings´ tutorial and played with the number of points, rings to create a more rustic feeling."
+    "name": "Tree Rings | Version 1 | Old tree",
+    "description": "I was inspired by the ´Radial Perlin Noise and Generative Tree Rings´ tutorial and played with the number of points and rings to create a more rustic feeling."
   },
   {
     "file": "experiments/version4.js",
-    "name": "Waving flag",
-    "description": "I was inspired by the ´Radial Perlin Noise and Generative Tree Rings´ and"
+    "name": "Tree Rings | Version 2 | Waving flag",
+    "description": "I wanted to make something 'Real' and not abstract, so I ended up with making a waving flag."
   },
   {
     "file": "experiments/version5.js",
-    "name": "Circle of rings",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+    "name": "Tree Rings | Version 3 | 3D",
+    "description": "The goal was to keep the circle structure from the tree rings, but give it more depth."
   },
   {
     "file": "experiments/version6.js",
     "name": "Flow Fields | Version 1 | Lightning Strikes",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+    "description": "I wanted the flow field to look like lightning, but ended up making them slower than planned since it was too disturbing for the eyes."
   },
   {
     "file": "experiments/version7.js",
-    "name": "Flow Fields | Version 2 | Fire's catching",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+    "name": "Flow Fields | Version 2 | Fire's Catching",
+    "description": "The aim was to manipulate the flow field to make it look like flames and fire."
   },
   {
     "file": "experiments/music.js",
-    "name": "Music",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+    "name": "Tone JS | Version 1 | Fireworks By Night",
+    "description": "I wanted to interact sound and art with mouseclick, and I wanted it to look like fireworks in the night."
   }
 ]

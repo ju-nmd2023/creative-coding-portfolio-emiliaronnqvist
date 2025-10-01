@@ -1,4 +1,4 @@
-//Following code is inspired på N
+//Following code is inspired by Garrits first example in this video https://play.ju.se/media/Noise+examples,+and+Vera+Moln%C3%A1r/0_3pcpvm3q
 function setup() {
   createCanvas(innerWidth, innerHeight);
   noLoop();
